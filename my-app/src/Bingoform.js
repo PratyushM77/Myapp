@@ -138,7 +138,7 @@ function Bingoform(props) {
 
           <p style={{ color: props.textColor }}>
             {" "}
-            {text.split(" ").filter((element)=>{ return element.length!== 0}).length} words and {text.length} characters
+            {text.split(/\s+/).filter((element)=>{ return element.length!== 0}).length} words and {text.length} characters
           </p>
           <p style={{ color: props.textColor }}>
             {0.008 * text.split(" ").filter((element)=>{ return element.length!== 0}).length.toFixed(2)} Minutes required to read
