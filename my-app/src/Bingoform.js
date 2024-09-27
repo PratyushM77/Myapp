@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import SpeechRecognition,{useSpeechRecognition} from 'react-speech-recognition';
 
 function Bingoform(props) {
   const [text, Settext] = useState("");
@@ -42,11 +43,9 @@ function Bingoform(props) {
     msg.text = text;
     window.speechSynthesis.speak(msg);
    
-      props.showAlert("Text to Speech" , "Success")
-   
   };
 
-
+  
   // Dark mode
 
   // const[mystyle,setMystyle] = useState({
@@ -82,7 +81,7 @@ function Bingoform(props) {
           <textarea
             style={{
               color: props.mode === "dark" ? "white" : "#042743",
-              backgroundColor: props.mode === "dark" ? "grey" : "white"
+              backgroundColor: props.mode === "dark" ? "#13466e" : "white"
             }}
             value={text}
             onChange={handleOnchange}
@@ -93,21 +92,21 @@ function Bingoform(props) {
           ></textarea>
         </div>
 
-        <button
+        <button disabled={text.length===0}
           type="button"
           onClick={handleUpClick}
           className="btn btn-primary mx-1  my-1"
         >
           UpperCase
         </button>
-        <button
+        <button disabled={text.length===0}
           type="button"
           onClick={handleLoClick}
           className="btn btn-primary mx-1 my-1"
         >
           LowerCase
         </button>
-        <button
+        <button disabled={text.length===0}
           type="button"
           onClick={CopyAll}
           className="btn btn-primary mx-1 my-1"
@@ -115,16 +114,20 @@ function Bingoform(props) {
         >
           Copy
         </button>
-        <button
+        <button disabled={text.length===0}
           type="button"
           onClick={ClearAll} 
           className="btn btn-primary mx-1 my-1"
         >
           Clear All
         </button>
-        <button type="button" onClick={Speak} className="btn btn-primary mx-1 my-1">
+        <button disabled={text.length===0} type="button" onClick={Speak} className="btn btn-primary mx-1 my-1">
           Speak
         </button>
+       
+      
+    
+
         {/* <button type="button" onClick={toggleStyle} className="btn btn-primary my-1 mx-1">{btntext}</button> */}
         <div
           style={{
@@ -135,10 +138,10 @@ function Bingoform(props) {
 
           <p style={{ color: props.textColor }}>
             {" "}
-            {text.split(" ").length} words and {text.length} characters
+            {text.split(" ").filter((element)=>{ return element.length!== 0}).length} words and {text.length} characters
           </p>
           <p style={{ color: props.textColor }}>
-            {0.008 * text.split(" ").length.toFixed(2)} Minutes required to read
+            {0.008 * text.split(" ").filter((element)=>{ return element.length!== 0}).length.toFixed(2)} Minutes required to read
           </p>
           <h2 style={{ color: props.textColor }} className="Heading my-3">Preview</h2>
           <h5 style={{ color: props.textColor }} className=" paragraph px-1 py-1">{text}</h5>
