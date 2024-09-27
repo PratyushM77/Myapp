@@ -1,13 +1,14 @@
 import Alert from './Alert.js';
 import Bingoform from './Bingoform.js';
-// import Hola from './Hola.js';
+import Hola from './Hola.js';
 import Navbar from './Navbar.js'
 import React,{useState} from 'react'
-// import{
-//   BrowserRouter as Router,
-//  Route,
-//   Routes
-// } from "react-router-dom"
+// import Recognition from './Recognition.js'
+import{
+  BrowserRouter as Router,
+ Route,
+  Routes
+} from "react-router-dom"
  
 function App() {
 
@@ -135,25 +136,24 @@ const SkyMode = ()=>{
 
    const [textColor, setTextColor] = useState('black');
   
+   
   return (
-  <div>
+    <>
+ 
+ <Router> 
+   <Navbar mode={mode} SkyMode={SkyMode}  Redmode = {Redmode} Goldenmode = {Goldenmode} Coalmode = {Coalmode} Bluemode={Bluemode}  toggleMode = {toggleMode}/>
+   <Alert alert = {alert}/>
+<div>
 
-    <Navbar mode={mode} SkyMode={SkyMode}  Redmode = {Redmode} Goldenmode = {Goldenmode} Coalmode = {Coalmode} Bluemode={Bluemode}  toggleMode = {toggleMode}/>
-    <Alert alert = {alert}/>
-    <Bingoform showAlert= {showAlert} textColor={textColor} mode={mode}  />
+
+    <Routes>
+       <Route path='/Hola' element={<Hola/>}/> 
+      <Route path='/' element={<Bingoform showAlert= {showAlert} textColor={textColor} mode={mode} />}/>
+    
+    </Routes> 
   </div>
-//  <Router> 
-// <div>
-
-
-//     {/* <Routes>
-//       {/* <Route path='/Hola' element={<Hola/>}/> */}
-//      {/* <Route path='/' element={ */}
-     
-//    {/* }/> */} 
-//    {/* </Routes> */}
-//  </div>
-// </Router>
+</Router>
+</>
   );
 }
 
